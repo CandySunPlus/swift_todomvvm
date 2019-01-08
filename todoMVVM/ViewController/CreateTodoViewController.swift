@@ -84,12 +84,12 @@ class CreateTodoViewController: ReactiveViewController<CreateTodoViewModel> {
         view.backgroundColor = .white
 
         saveButton.reactive.isEnabled <~ viewModel.create.isEnabled
-        viewModel.note <~ noteTextField.reactive.continuousTextValues.map { $0! }
+        viewModel.note <~ noteTextField.reactive.continuousTextValues.map {
+            $0!
+        }
         viewModel.dueDate <~ dueDatePicker.reactive
                 .controlEvents(UIControl.Event.valueChanged)
-                .filter { picker in
-                    return picker != nil
-                }.map { picker -> Date in
+                .map { picker -> Date in
                     return picker.date
                 }
         dueDateLabel.reactive.text <~ viewModel.dueDateText
