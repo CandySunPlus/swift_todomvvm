@@ -17,8 +17,10 @@ enum NavigationEvent {
     init(_ viewModel: ViewModelProtocol) {
         if let vm = viewModel as? TodoTableViewModel {
             self = .Push(TodoTableViewController(viewModel: vm), .Push)
+        } else if let vm = viewModel as? CreateTodoViewModel {
+            self = .Push(CreateTodoViewController(viewModel: vm), .Modal)
         } else {
-            self = .Push(UIViewController() , .Push)
+            self = .Push(UIViewController(), .Push)
         }
     }
 }

@@ -62,7 +62,7 @@ class CreateTodoViewController: ReactiveViewController<CreateTodoViewModel> {
 
             dueDateLabel.snp.makeConstraints { [unowned self] maker in
                 maker.left.equalTo(self.noteLabel)
-                maker.top.equalTo(self.dueDateLabel.snp.bottom).offset(4)
+                maker.top.equalTo(self.noteTextField.snp.bottom).offset(16)
             }
             dueDatePicker.snp.makeConstraints { [unowned self] maker in
                 maker.width.equalTo(self.view)
@@ -75,7 +75,7 @@ class CreateTodoViewController: ReactiveViewController<CreateTodoViewModel> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = .all
+        edgesForExtendedLayout = UIRectEdge(rawValue: 0)
 
         navigationItem.rightBarButtonItem = saveButton
         navigationItem.leftBarButtonItem = cancelButton
@@ -84,9 +84,7 @@ class CreateTodoViewController: ReactiveViewController<CreateTodoViewModel> {
         view.backgroundColor = .white
 
         saveButton.reactive.isEnabled <~ viewModel.create.isEnabled
-        viewModel.note <~ noteTextField.reactive.textValues.map { noteText -> String in
-            return noteText ?? ""
-        }
+        viewModel.note <~ noteTextField.reactive.continuousTextValues.map { $0! }
         viewModel.dueDate <~ dueDatePicker.reactive
                 .controlEvents(UIControl.Event.valueChanged)
                 .filter { picker in

@@ -55,13 +55,13 @@ class TodoTableViewModel: ViewModel {
             return tmp
         }
 
-//        todos <~ deleteTodo.values
-//                .skipNil()
-//                .map { (path: IndexPath?) -> TodoCellViewModel in
-//                    var tmp = todos.value
-//                    tmp.remove(at: path?.row)
-//                    return tmp
-//                }
+        todos <~ deleteTodo.values
+                .skipNil()
+                .map { [unowned self] (path: IndexPath) -> [TodoCellViewModel] in
+                    var tmp = self.todos.value
+                    tmp.remove(at: path.row)
+                    return tmp
+                }
     }
 
     @objc func clearCompleted() {
