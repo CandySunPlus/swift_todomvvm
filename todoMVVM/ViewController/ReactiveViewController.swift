@@ -18,7 +18,7 @@ class ReactiveViewController<T: ViewModelProtocol>: UIViewController {
         self.init(nibName: nil, bundle: nil, viewModel: viewModel)
     }
 
-    override required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init with coder has not been implemented")
     }
 }

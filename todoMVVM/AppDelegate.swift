@@ -13,6 +13,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var services: ViewModelServicesProtocol?
 
     var presenting: UIViewController? {
         return navigationStack.last
@@ -22,6 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
+
+        services = ViewModelServices(delegate: self)
+        let vm = TodoTableViewModel(services: services!)
+        services?.push(viewModel: vm)
+
         let rootNavigationController = UINavigationController()
         navigationStack.append(rootNavigationController)
         window?.rootViewController = rootNavigationController
@@ -35,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 
     }
-
 
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -60,4 +65,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate: ViewModelServicesDelegate {
+    func services(_ services: ViewModelServicesProtocol, navigate: NavigationEvent) {
+        DispatchQueue.main.async {
+            switch navigate {
+            case .Push(let vc, let style):
+                switch style {
+                case .Push:
+                    if let top = self.presenting as? UINavigationController {
+                        top.pushViewController(vc, animated: true)
+                    }
+                case .Modal:
+                    if let top = self.presenting {
+                        let navigationController = UINavigationController(rootViewController: vc)
+                        self.navigationStack.append(navigationController)
+                        top.present(navigationController, animated: true, completion: nil)
+                    }
+                }
+            case .Pop:
+                if let navigationController = self.presenting as? UINavigationController {
+                    if navigationController.viewControllers.count > 1 {
+                        navigationController.popViewController(animated: true)
+                    } else if self.navigationStack.count > 1 {
+                        self.navigationStack.popLast()?.dismiss(animated: true, completion: nil)
+                    }
+                } else {
+                    self.navigationStack.popLast()?.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
 }

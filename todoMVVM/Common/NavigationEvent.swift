@@ -15,6 +15,10 @@ enum NavigationEvent {
     case Pop
 
     init(_ viewModel: ViewModelProtocol) {
-        return .Push(UIViewController() , .Push)
+        if let vm = viewModel as? TodoTableViewModel {
+            self = .Push(TodoTableViewController(viewModel: vm), .Push)
+        } else {
+            self = .Push(UIViewController() , .Push)
+        }
     }
 }

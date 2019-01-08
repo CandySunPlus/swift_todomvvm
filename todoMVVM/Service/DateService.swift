@@ -6,18 +6,19 @@
 import Foundation
 
 protocol DateServiceProtocol {
-    func format(_ date: NSDate) -> String
+    func format(_ date: Date) -> String
 }
 
 class DateService: NSObject, DateServiceProtocol {
     private let formatter = DateFormatter()
 
-    init() {
+    override init() {
+        super.init()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
     }
 
-    func format(_ date: NSDate) -> String {
+    func format(_ date: Date) -> String {
         return formatter.string(from: date)
     }
 }

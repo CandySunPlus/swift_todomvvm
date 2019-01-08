@@ -12,7 +12,8 @@ class ReactiveTableViewCell<T: ViewModelProtocol>: UITableViewCell {
     var vm_signal: Signal<T, NoError> {
         return signal
     }
-    override var reuseIdentifier: String? {
+
+    class func reuseIdentifier() -> String {
         return "cn.sfmblog.ReactiveTableViewCell"
     }
 
@@ -20,12 +21,12 @@ class ReactiveTableViewCell<T: ViewModelProtocol>: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
-    override required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init with coder has not been implemented")
     }
 
-    func bindViewModel(viewModel: T) {
-        observer.send(viewModel)
+    func bindViewModel(_ viewModel: T) {
+        observer.send(value: viewModel)
         updateConstraintsIfNeeded()
         setNeedsLayout()
     }

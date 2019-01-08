@@ -8,13 +8,14 @@ import UIKit
 import SnapKit
 import ReactiveCocoa
 import ReactiveSwift
+import Result
 
 class TodoTableViewCell: ReactiveTableViewCell<TodoCellViewModel> {
     let noteLabel = UILabel()
     let dueDateLabel = UILabel()
     private var didSetupConstraints = false
 
-    override var reuseIdentifier: String? {
+    override class func reuseIdentifier() -> String {
         return "cn.sfmblog.TodoTableCell"
     }
 
@@ -26,44 +27,44 @@ class TodoTableViewCell: ReactiveTableViewCell<TodoCellViewModel> {
         contentView.addSubview(dueDateLabel)
 
         noteLabel.reactive.text <~ vm_signal
-                .map { (model: TodoCellViewModel) -> U in
-                    model.note
+                .map { (model: TodoCellViewModel) -> String in
+                    return model.note
                 }
                 .skipRepeats()
                 .observe(on: UIScheduler())
 
         vm_signal
-                .flatMap(.latest) { (model: TodoCellViewModel) -> SignalProducer<U, F> in
-                    model.completed.producer
+                .flatMap(.latest) { (model: TodoCellViewModel) -> SignalProducer<Bool, NoError> in
+                    return model.completed.producer
                 }.skipRepeats()
                 .observe(on: UIScheduler())
-                .observe { (event: Signal.Event) in
-                    accessoryType = event ? .checkmark : .none
+                .observeValues { [weak self] (completed: Bool) -> Void in
+                    self?.accessoryType = completed ? .checkmark : .none
                 }
 
         dueDateLabel.reactive.text <~ vm_signal
-                .map { (model: TodoCellViewModel) -> U in
-                    model.dueDateText
+                .map { (model: TodoCellViewModel) -> String in
+                    return model.dueDateText
                 }.skipRepeats()
                 .observe(on: UIScheduler())
     }
 
-    override required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init with coder has not been implemented")
     }
 
     override func updateConstraints() {
         super.updateConstraints()
         if !didSetupConstraints {
-            noteLabel.snp_makeConstraints { maker in
-                maker.left.equalTo(self.contentView.snp_left).offset(8)
-                maker.top.equalTo(self.contentView.snp_top).offset(8)
-                maker.right.equalTo(self.contentView.snp_right).offset(-16)
+            noteLabel.snp.makeConstraints { maker in
+                maker.left.equalTo(self.contentView.snp.left).offset(8)
+                maker.top.equalTo(self.contentView.snp.top).offset(8)
+                maker.right.equalTo(self.contentView.snp.right).offset(-16)
             }
 
-            dueDateLabel.snp_makeConstraints { maker in
+            dueDateLabel.snp.makeConstraints { maker in
                 maker.left.right.equalTo(self.noteLabel)
-                maker.top.equalTo(self.noteLabel.snp_bottom).offset(4)
+                maker.top.equalTo(self.noteLabel.snp.bottom).offset(4)
                 maker.bottom.equalTo(self.contentView).offset(-8)
             }
 

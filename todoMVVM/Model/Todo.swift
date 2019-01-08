@@ -8,11 +8,11 @@ import Foundation
 class Todo: Equatable {
     let id: Int
     let note: String
-    let createAt: NSDate
-    let dueDate: NSDate
+    let createAt: Date
+    let dueDate: Date
     let completed: Bool
 
-    init(id: Int, note: String, createAt: NSDate = NSDate(), dueDate: NSDate, completed: Bool) {
+    init(id: Int, note: String, createAt: Date = Date(), dueDate: Date, completed: Bool) {
         self.id = id
         self.note = note
         self.createAt = createAt

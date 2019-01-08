@@ -26,6 +26,6 @@ class TodoCellViewModel: ViewModel {
         _todo <~ completed.producer
                 .skip(first: 1)
                 .map(_todo.value.markAs)
-                .flatMap(.latest, transform: services.todo.update)
+                .flatMap(.latest, services.todo.update)
     }
 }
