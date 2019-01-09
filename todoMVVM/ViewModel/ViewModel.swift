@@ -9,11 +9,10 @@ protocol ViewModelProtocol {
     var serviceProvider: ServiceProviderProtocol { get }
 }
 
-class ViewModel: NSObject, ViewModelProtocol {
+class ViewModel: ViewModelProtocol {
     private(set) var serviceProvider: ServiceProviderProtocol
 
     init(serviceProvider: ServiceProviderProtocol) {
         self.serviceProvider = serviceProvider
-        super.init()
     }
 }

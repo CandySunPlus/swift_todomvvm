@@ -20,7 +20,9 @@ class TodoTableViewModel: ViewModel {
         }
 
         deleteTodo = Action { (todos: [TodoCellViewModel], cell: TodoCellViewModel) -> SignalProducer<IndexPath?, NoError> in
-            let deleteIndex = todos.firstIndex(of: cell)
+            let deleteIndex = todos.firstIndex { cellViewModel in
+                return cell.todo == cellViewModel.todo
+            }
             if let idx = deleteIndex {
                 return serviceProvider.todo.delete(cell.todo)
                         .map { _ in
