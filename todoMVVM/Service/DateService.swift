@@ -12,8 +12,7 @@ protocol DateServiceProtocol {
 class DateService: DateServiceProtocol {
     private let formatter = DateFormatter()
 
-    override init() {
-        super.init()
+    init() {
         formatter.dateStyle = .short
         formatter.timeStyle = .short
     }

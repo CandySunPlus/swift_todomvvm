@@ -17,10 +17,8 @@ class ServiceProvider: ServiceProviderProtocol {
     private(set) var date: DateServiceProtocol
 
     init(withNavigationDelegate navigationDelegate: NavigationServiceDelegate?) {
-        self.delegate = delegate
         self.todo = TodoService()
         self.date = DateService()
-        self.navigation = NavigationService(navigationDelegate)
-        super.init()
+        self.navigation = NavigationService(delegate: navigationDelegate)
     }
 }
