@@ -14,16 +14,16 @@ class CreateTodoViewModel: ViewModel {
     let cancel: Action<(), (), NoError>
     let create: Action<(note: String, due: Date), Todo, NoError>
 
-    override init(services: ViewModelServicesProtocol) {
+    override init(serviceProvider: ServiceProviderProtocol) {
         self.dueDate = MutableProperty(Date().addingTimeInterval(60 * 60))
         let createEnabled = MutableProperty(false)
         self.create = Action(enabledIf: createEnabled) { (note: String, due: Date) -> SignalProducer<Todo, NoError> in
-            return services.todo.create(note, dueDate: due)
+            return serviceProvider.todo.create(note, dueDate: due)
         }
         self.cancel = Action { () -> SignalProducer<(), NoError> in
             return SignalProducer(value: ())
         }
-        super.init(services: services)
+        super.init(serviceProvider: serviceProvider)
 
         createEnabled <~ note.producer
                 .map { note -> Bool in
@@ -32,7 +32,7 @@ class CreateTodoViewModel: ViewModel {
 
         dueDateText <~ dueDate.producer
                 .map { date -> String in
-            return "Due at: \(services.date.format(date))"
+            return "Due at: \(serviceProvider.date.format(date))"
         }
     }
 }
