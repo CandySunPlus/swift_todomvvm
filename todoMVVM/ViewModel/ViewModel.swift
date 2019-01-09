@@ -5,11 +5,15 @@
 
 import Foundation
 
-class ViewModel: NSObject, ViewModelProtocol {
-    private(set) var services: ViewModelServicesProtocol
+protocol ViewModelProtocol {
+    var serviceProvider: ServiceProviderProtocol { get }
+}
 
-    init(services: ViewModelServicesProtocol) {
-        self.services = services
+class ViewModel: NSObject, ViewModelProtocol {
+    private(set) var serviceProvider: ServiceProviderProtocol
+
+    init(serviceProvider: ServiceProviderProtocol) {
+        self.serviceProvider = serviceProvider
         super.init()
     }
 }

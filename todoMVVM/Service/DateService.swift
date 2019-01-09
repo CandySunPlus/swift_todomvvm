@@ -9,7 +9,7 @@ protocol DateServiceProtocol {
     func format(_ date: Date) -> String
 }
 
-class DateService: NSObject, DateServiceProtocol {
+class DateService: DateServiceProtocol {
     private let formatter = DateFormatter()
 
     override init() {

@@ -13,43 +13,43 @@ class TodoTableViewModel: ViewModel {
     let presentCreateTodo: Action<(), CreateTodoViewModel, NoError>
     let deleteTodo: Action<(todos: [TodoCellViewModel], cell: TodoCellViewModel), IndexPath?, NoError>
 
-    override init(services: ViewModelServicesProtocol) {
+    override init(serviceProvider: ServiceProviderProtocol) {
 
         self.presentCreateTodo = Action { () -> SignalProducer<CreateTodoViewModel, NoError> in
-            return SignalProducer(value: CreateTodoViewModel(services: services))
+            return SignalProducer(value: CreateTodoViewModel(serviceProvider: serviceProvider))
         }
 
         deleteTodo = Action { (todos: [TodoCellViewModel], cell: TodoCellViewModel) -> SignalProducer<IndexPath?, NoError> in
             let deleteIndex = todos.firstIndex(of: cell)
             if let idx = deleteIndex {
-                return services.todo.delete(cell.todo)
+                return serviceProvider.todo.delete(cell.todo)
                         .map { _ in
                             return IndexPath(row: idx, section: 0)
                         }
             }
             return SignalProducer(value: nil)
         }
-        super.init(services: services)
+        super.init(serviceProvider: serviceProvider)
 
         let createdTodoSignal = presentCreateTodo.values.flatMap(.latest) { (viewModel: CreateTodoViewModel) -> Signal<Todo, NoError> in
             return viewModel.create.values
         }
 
-        presentCreateTodo.values.observeValues(services.push)
+        presentCreateTodo.values.observeValues(serviceProvider.navigation.push)
         presentCreateTodo.values.flatMap(.latest) { (viewModel: CreateTodoViewModel) in
             return viewModel.cancel.values.map { _ in
                 return viewModel
             }
-        }.observeValues(services.pop)
+        }.observeValues(serviceProvider.navigation.pop)
 
         presentCreateTodo.values.flatMap(.latest) { (viewModel: CreateTodoViewModel) in
             return viewModel.create.values.map { _ in
                 return viewModel
             }
-        }.observeValues(services.pop)
+        }.observeValues(serviceProvider.navigation.pop)
 
         todos <~ createdTodoSignal.map { [unowned self] todo -> [TodoCellViewModel] in
-            let new = TodoCellViewModel(services: services, todo: todo)
+            let new = TodoCellViewModel(serviceProvider: serviceProvider, todo: todo)
             var tmp = self.todos.value
             tmp.insert(new, at: 0)
             return tmp

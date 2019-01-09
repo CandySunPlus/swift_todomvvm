@@ -16,16 +16,16 @@ class TodoCellViewModel: ViewModel {
         return _todo.value
     }
 
-    init(services: ViewModelServicesProtocol, todo: Todo) {
+    init(serviceProvider: ServiceProviderProtocol, todo: Todo) {
         _todo = MutableProperty(todo)
         note = todo.note
-        dueDateText = "Due: \(services.date.format(todo.dueDate))"
+        dueDateText = "Due: \(serviceProvider.date.format(todo.dueDate))"
         completed = MutableProperty(todo.completed)
-        super.init(services: services)
+        super.init(serviceProvider: serviceProvider)
 
         _todo <~ completed.producer
                 .skip(first: 1)
                 .map(_todo.value.markAs)
-                .flatMap(.latest, services.todo.update)
+                .flatMap(.latest, serviceProvider.todo.update)
     }
 }

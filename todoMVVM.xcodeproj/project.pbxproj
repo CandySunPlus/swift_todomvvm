@@ -14,13 +14,12 @@
 		C1AF11F2BFDB7EF111710671 /* ReactiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF1647D14827FB22AEA4BE /* ReactiveViewController.swift */; };
 		C1AF136FBA615146E0C586A8 /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF12131840F044904A79BB /* TodoTableViewController.swift */; };
 		C1AF13D7995C6B3CD332057F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF1B556206E22D26CFF22E /* Utils.swift */; };
-		C1AF141CFBB72D233DAD2326 /* ViewModelServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF133F1B0C53244F17C43E /* ViewModelServicesProtocol.swift */; };
 		C1AF1439C56A052843B177D9 /* CreateTodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF1F12252FE545F264C37A /* CreateTodoViewModel.swift */; };
 		C1AF14C6E96F1CAD68CE5F38 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF1620D7533C4E107F0DB4 /* DateService.swift */; };
 		C1AF15588B01D082DE468782 /* TodoTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF1B15CD83E7038178B037 /* TodoTableViewModel.swift */; };
 		C1AF168C0BC37A095BE826B2 /* todoMVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF1853248FCA722F2E5DE9 /* todoMVVMTests.swift */; };
-		C1AF16B47D7D0780B4756AE9 /* ViewModelServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF192D27BE22E52A208C55 /* ViewModelServices.swift */; };
-		C1AF185CDA0DD1859F653754 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF162A3DB9D9E7997905E0 /* ViewModelProtocol.swift */; };
+		C1AF16B47D7D0780B4756AE9 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF192D27BE22E52A208C55 /* ServiceProvider.swift */; };
+		C1AF17B13B0202B33BFE8AA8 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF116DB10DEDC22AAFC1CB /* NavigationService.swift */; };
 		C1AF18A0F830B8FB16023732 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF15E5964942A0AFACAAD4 /* ViewModel.swift */; };
 		C1AF19061D08072523809B52 /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF13ABD3ED807BB7B74F49 /* CreateTodoViewController.swift */; };
 		C1AF19A4265AC98F9E757053 /* TodoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF1DB4A1955E9893F7A04B /* TodoService.swift */; };
@@ -59,21 +58,20 @@
 		9B0A1E91ECDEBBB7D6EA0F24 /* Pods-todoMVVMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todoMVVMTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-todoMVVMTests/Pods-todoMVVMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BF6C096B78F1DE3EB51A9245 /* Pods_todoMVVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_todoMVVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1AF108EF92ECA01F9677558 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		C1AF116DB10DEDC22AAFC1CB /* NavigationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 		C1AF11B6D63A25F195DD8C2A /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		C1AF11E917C5C380346AD128 /* todoMVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoMVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1AF1206FFD9F9B274796740 /* NavigationEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationEvent.swift; sourceTree = "<group>"; };
 		C1AF12131840F044904A79BB /* TodoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
-		C1AF133F1B0C53244F17C43E /* ViewModelServicesProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelServicesProtocol.swift; sourceTree = "<group>"; };
 		C1AF13ABD3ED807BB7B74F49 /* CreateTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTodoViewController.swift; sourceTree = "<group>"; };
 		C1AF13BF933975196BAB07B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1AF159B33F9A2F23472A8D9 /* todoMVVMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoMVVMUITests.swift; sourceTree = "<group>"; };
 		C1AF15E5964942A0AFACAAD4 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		C1AF1620D7533C4E107F0DB4 /* DateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
-		C1AF162A3DB9D9E7997905E0 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		C1AF1647D14827FB22AEA4BE /* ReactiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveViewController.swift; sourceTree = "<group>"; };
 		C1AF17687909BADCF9465760 /* todoMVVMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoMVVMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1AF1853248FCA722F2E5DE9 /* todoMVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoMVVMTests.swift; sourceTree = "<group>"; };
-		C1AF192D27BE22E52A208C55 /* ViewModelServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelServices.swift; sourceTree = "<group>"; };
+		C1AF192D27BE22E52A208C55 /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		C1AF19D19B9C69CC97CB7F70 /* todoMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1AF1A6A8F96707DEC021137 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1AF1A78B38B2881C3F9C40B /* ReactiveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveTableViewCell.swift; sourceTree = "<group>"; };
@@ -172,10 +170,10 @@
 		C1AF153C14D82510809810A6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				C1AF192D27BE22E52A208C55 /* ViewModelServices.swift */,
-				C1AF133F1B0C53244F17C43E /* ViewModelServicesProtocol.swift */,
+				C1AF192D27BE22E52A208C55 /* ServiceProvider.swift */,
 				C1AF1DB4A1955E9893F7A04B /* TodoService.swift */,
 				C1AF1620D7533C4E107F0DB4 /* DateService.swift */,
+				C1AF116DB10DEDC22AAFC1CB /* NavigationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -183,7 +181,6 @@
 		C1AF17F67CD27D6743511439 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C1AF162A3DB9D9E7997905E0 /* ViewModelProtocol.swift */,
 				C1AF15E5964942A0AFACAAD4 /* ViewModel.swift */,
 				C1AF1FC33DF49B31C2BC8F85 /* TodoCellViewModel.swift */,
 				C1AF1B15CD83E7038178B037 /* TodoTableViewModel.swift */,
@@ -475,12 +472,10 @@
 			files = (
 				C1AF1D627CE0363A6D88EB9A /* AppDelegate.swift in Sources */,
 				C1AF136FBA615146E0C586A8 /* TodoTableViewController.swift in Sources */,
-				C1AF185CDA0DD1859F653754 /* ViewModelProtocol.swift in Sources */,
 				C1AF10EA41E004F15C6A145E /* NavigationEvent.swift in Sources */,
 				C1AF1B2B59D25AAC6454B799 /* Todo.swift in Sources */,
 				C1AF18A0F830B8FB16023732 /* ViewModel.swift in Sources */,
-				C1AF16B47D7D0780B4756AE9 /* ViewModelServices.swift in Sources */,
-				C1AF141CFBB72D233DAD2326 /* ViewModelServicesProtocol.swift in Sources */,
+				C1AF16B47D7D0780B4756AE9 /* ServiceProvider.swift in Sources */,
 				C1AF19A4265AC98F9E757053 /* TodoService.swift in Sources */,
 				C1AF13D7995C6B3CD332057F /* Utils.swift in Sources */,
 				C1AF14C6E96F1CAD68CE5F38 /* DateService.swift in Sources */,
@@ -491,6 +486,7 @@
 				C1AF15588B01D082DE468782 /* TodoTableViewModel.swift in Sources */,
 				C1AF1439C56A052843B177D9 /* CreateTodoViewModel.swift in Sources */,
 				C1AF19061D08072523809B52 /* CreateTodoViewController.swift in Sources */,
+				C1AF17B13B0202B33BFE8AA8 /* NavigationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

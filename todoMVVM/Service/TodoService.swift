@@ -13,7 +13,7 @@ protocol TodoServiceProtocol {
     func create(_ note: String, dueDate: Date) -> SignalProducer<Todo, NoError>
 }
 
-class TodoService: NSObject, TodoServiceProtocol {
+class TodoService: TodoServiceProtocol {
     func update(_ todo: Todo) -> SignalProducer<Todo, NoError> {
         return SignalProducer(value: todo)
     }

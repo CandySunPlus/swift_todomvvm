@@ -13,7 +13,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var services: ViewModelServicesProtocol?
+    var serviceProvider: ServiceProviderProtocol?
 
     var presenting: UIViewController? {
         return navigationStack.last
@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        services = ViewModelServices(delegate: self)
-        let vm = TodoTableViewModel(services: services!)
-        services?.push(viewModel: vm)
+        serviceProvider = ServiceProvider(withNavigationDelegate: self)
+        let vm = TodoTableViewModel(serviceProvider: serviceProvider!)
+        serviceProvider?.navigation.push(withViewModel: vm)
 
         let rootNavigationController = UINavigationController()
         navigationStack.append(rootNavigationController)
@@ -67,10 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate: ViewModelServicesDelegate {
-    func services(_ services: ViewModelServicesProtocol, navigate: NavigationEvent) {
+extension AppDelegate: NavigationServiceDelegate {
+    func navigate(withNavigateEvent navigateEvent: NavigationEvent) {
         DispatchQueue.main.async {
-            switch navigate {
+            switch navigateEvent {
             case .Push(let vc, let style):
                 switch style {
                 case .Push:
