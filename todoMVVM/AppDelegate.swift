@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootNavigationController = UINavigationController()
         navigationStack.append(rootNavigationController)
         window?.rootViewController = rootNavigationController
+        window?.backgroundColor = .white
         window?.makeKeyAndVisible()
         return true
     }

@@ -23,12 +23,12 @@ class Todo: Equatable {
     func markAs(completed: Bool) -> Todo {
         return Todo(id: id, note: note, createAt: createAt, dueDate: dueDate, completed: completed)
     }
-}
 
-func ==(lhs: Todo, rhs: Todo) -> Bool {
-    return lhs.id == rhs.id &&
-            lhs.note == rhs.note &&
-            lhs.createAt == rhs.createAt &&
-            lhs.dueDate == rhs.dueDate &&
-            lhs.completed == rhs.completed
+    static func ==(lhs: Todo, rhs: Todo) -> Bool {
+        return lhs.id == rhs.id &&
+                lhs.note == rhs.note &&
+                lhs.createAt == rhs.createAt &&
+                lhs.dueDate == rhs.dueDate &&
+                lhs.completed == rhs.completed
+    }
 }
